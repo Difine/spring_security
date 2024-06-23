@@ -52,6 +52,7 @@ public class UsersController {
     @GetMapping("admin/update")
     public String showUpdateUser(@RequestParam("id") long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("roles", roleService.findAll());
         return "update-user";
     }
 

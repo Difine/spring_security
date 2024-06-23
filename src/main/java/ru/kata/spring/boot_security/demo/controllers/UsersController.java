@@ -45,7 +45,6 @@ public class UsersController {
 
     @PostMapping("admin")
     public String createUser(@ModelAttribute("user") User user) {
-        System.out.println(user);
         userService.saveUser(user);
         return "redirect:/admin";
     }

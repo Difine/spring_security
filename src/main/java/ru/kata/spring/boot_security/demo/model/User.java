@@ -1,13 +1,10 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class User implements UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +35,12 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, String lastName, String name, Collection<Role> roles) {
-        this.username = username;
-        this.password = password;
+    public User(Set<Role> roles, String lastName, String name, String password, String username) {
+        this.roles = roles;
         this.lastName = lastName;
         this.name = name;
+        this.password = password;
+        this.username = username;
     }
 
     public void addRole(Role role) {
@@ -63,8 +61,16 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
@@ -87,7 +93,7 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public Collection<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
@@ -115,40 +121,5 @@ public class User implements UserDetails {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }

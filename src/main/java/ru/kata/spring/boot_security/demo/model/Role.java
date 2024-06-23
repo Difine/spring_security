@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public class Role implements GrantedAuthority {
+public class Role {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,10 +53,6 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    @Override
-    public String getAuthority() {
-        return name;
-    }
 
     @Override
     public boolean equals(Object o) {

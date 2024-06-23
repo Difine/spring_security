@@ -6,7 +6,7 @@
 <body>
 <h1>Welcome to Index PAGE!</h1>
 <div sec:authorize="isAuthenticated()">
-    <form  th:action="@{/logout}" method="post">
+    <form th:action="@{/logout}" method="post">
         <input type="submit" value="Logout!">
     </form>
 </div>

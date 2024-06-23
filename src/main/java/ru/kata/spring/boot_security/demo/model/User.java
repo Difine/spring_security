@@ -33,7 +33,7 @@ public class User implements UserDetails {
                     name = "user_id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id"))
-    private Collection<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -43,7 +43,16 @@ public class User implements UserDetails {
         this.password = password;
         this.lastName = lastName;
         this.name = name;
-        this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+        role.getUsers().add(this);
+    }
+
+    public void removeRole(Role role) {
+        this.roles.remove(role);
+        role.getUsers().remove(this);
     }
 
     public long getId() {
@@ -82,7 +91,7 @@ public class User implements UserDetails {
         return roles;
     }
 
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

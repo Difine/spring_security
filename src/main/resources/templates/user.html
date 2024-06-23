@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Spring Security Example</title>
 </head>
@@ -16,7 +17,7 @@
     </tr>
 </table>
 <div sec:authorize="isAuthenticated()">
-    <form  th:action="@{/logout}" method="post">
+    <form th:action="@{/logout}" method="post">
         <input type="submit" value="Logout!">
     </form>
 </div>

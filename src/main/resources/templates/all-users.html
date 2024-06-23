@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>All users</title>
@@ -28,7 +29,7 @@
     </table>
     <button type="button" onclick="window.location.href = '/admin/new'">Add user</button>
     <div sec:authorize="isAuthenticated()">
-        <form  th:action="@{/logout}" method="post">
+        <form th:action="@{/logout}" method="post">
             <input type="submit" value="Logout!">
         </form>
     </div>

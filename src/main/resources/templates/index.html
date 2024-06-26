@@ -2,17 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Spring Security Example</title>
+    <title>Index page</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 </head>
 <body>
 <h1>Welcome to Index PAGE!</h1>
 
 <div sec:authorize="!isAuthenticated()">
-    <button type="button" onclick="window.location.href = '/login'">Login</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href = '/login'">Login</button>
 </div>
 <div sec:authorize="isAuthenticated()">
     <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout!">
+        <input type="submit" class="btn btn-danger" value="Logout!">
     </form>
 </div>
 

@@ -64,4 +64,9 @@ public class Role {
     public int hashCode() {
         return Objects.hash(id, name, users);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

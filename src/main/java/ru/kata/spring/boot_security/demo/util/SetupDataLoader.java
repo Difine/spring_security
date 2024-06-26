@@ -24,7 +24,6 @@ public class SetupDataLoader implements
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-
         if (userRepository.findByUsername("admin").isPresent())
             return;
         Role userRole = new Role("ROLE_USER");
@@ -33,7 +32,9 @@ public class SetupDataLoader implements
         User user = new User();
         user.setUsername("admin");
         user.setPassword(passwordEncoder.encode("admin"));
-        user.setName("Administrator");
+        user.setName("Super");
+        user.setLastName("Administrator");
+        user.setAge((byte) 25);
         user.addRole(userRole);
         user.addRole(adminRole);
         userRepository.save(user);

@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.model;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class User {
@@ -23,6 +24,9 @@ public class User {
     @Column(name = "lastname")
     private String lastName;
 
+    @Column(name = "age")
+    private Byte age;
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_role",
@@ -35,12 +39,14 @@ public class User {
     public User() {
     }
 
-    public User(Set<Role> roles, String lastName, String name, String password, String username) {
-        this.roles = roles;
+
+    public User(String username, String password, String lastName, String name, byte age, Set<Role> roles) {
+        this.username = username;
+        this.password = password;
         this.lastName = lastName;
         this.name = name;
-        this.password = password;
-        this.username = username;
+        this.age = age;
+        this.roles = roles;
     }
 
     public void addRole(Role role) {
@@ -99,6 +105,21 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Byte getAge() {
+        return age;
+    }
+
+    public void setAge(Byte age) {
+        this.age = age;
+    }
+
+    public String getStringRoles() {
+        return this.getRoles()
+                .stream()
+                .map(role -> role.getName().replace("ROLE_", ""))
+                .collect(Collectors.joining(" "));
     }
 
     @Override

@@ -30,8 +30,12 @@ public class UsersController {
     }
 
     @GetMapping("admin")
-    public String showAllUsers(Model model) {
+    public String showAllUsers(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName()).get();
+        model.addAttribute("profile", user);
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("user", new User());
+        model.addAttribute("roles", roleService.findAll());
         return "all-users";
     }
 
@@ -61,9 +65,9 @@ public class UsersController {
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/delete")
-    public String deleteUser(@RequestParam("id") long id) {
-        userService.deleteUser(id);
+    @PostMapping("admin/delete")
+    public String deleteUser(@ModelAttribute("user") User user) {
+        userService.deleteUser(user);
         return "redirect:/admin";
     }
 }

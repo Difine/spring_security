@@ -153,12 +153,15 @@ jQuery(async function () {
 
         if (response.ok) {
             await getAllUsers();
+            addForm.find('input[type="text"], input[type="password"]').val('')
+            $('#nav-home-tab')[0].click()
             alert('User has been added')
         } else {
             alert('An error occurred while trying to add')
         }
 
-        addForm.find('input[type="text"], input[type="password"]').val('')
+
+
     })
 
     getUserInfo()

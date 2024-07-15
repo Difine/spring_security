@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -50,6 +49,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(User user) {
         userRepository.delete(user);
+    }
+
+    @Transactional
+    @Override
+    public void deleteUserById(long id) {
+        userRepository.deleteById(id);
     }
 
     @Transactional

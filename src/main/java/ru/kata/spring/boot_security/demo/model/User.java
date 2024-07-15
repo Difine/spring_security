@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -113,13 +115,6 @@ public class User {
 
     public void setAge(Byte age) {
         this.age = age;
-    }
-
-    public String getStringRoles() {
-        return this.getRoles()
-                .stream()
-                .map(role -> role.getName().replace("ROLE_", ""))
-                .collect(Collectors.joining(" "));
     }
 
     @Override

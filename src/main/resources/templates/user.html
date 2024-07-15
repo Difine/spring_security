@@ -8,8 +8,7 @@
 <body class="vh-100">
 <nav class="navbar navbar-light bg-dark">
     <div class="container-fluid ms-auto">
-        <span class="navbar-text text-light"
-              th:text="${user.getUsername() + ' with roles: ' + user.getStringRoles()}"></span>
+        <span class="navbar-text text-light userinfo"></span>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Logout!" class="btn btn-link text-decoration-none text-secondary">
         </form>
@@ -42,20 +41,14 @@
                     <th scope="col">Role</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <th scope="row" th:text="${user.getId()}"></th>
-                    <td th:text="${user.getName()}"></td>
-                    <td th:text="${user.getLastName()}"></td>
-                    <td th:text="${user.getAge()}"></td>
-                    <td th:text="${user.getUsername()}"></td>
-                    <td th:text="${user.getStringRoles()}"></td>
-                </tr>
+                <tbody class="userInfo">
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/user_info.js}"></script>
 </body>
 </html>

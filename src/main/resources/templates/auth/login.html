@@ -10,7 +10,7 @@
 <div class="container text-center">
     <p class="h2 mt-5">Please sign in</p>
     <form method="POST" action="/process_login" class="col-4 offset-4 mt-3">
-        <input type="hidden" th:name="${_csrf.getParameterName()}" th:value="${_csrf.getToken()}">
+<!--        <input type="hidden" th:name="${_csrf.getParameterName()}" th:value="${_csrf.getToken()}">-->
         <div>
             <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Email address">
         </div>
